@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Se o arquivo ou diretório não existir fisicamente, encaminha para o index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Bloqueia acesso direto a arquivos sensíveis
+<FilesMatch "\.(sql|md|env)$">
+    Require all denied
+</FilesMatch>
